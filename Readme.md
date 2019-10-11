@@ -12,3 +12,6 @@ A friendship discovery app with matches, filtering, and weekly 6 people group ch
 # Team mates
 ## Anurang
 ![Insert Anurangs Image here](TeamMates/anurangPhoto.jpg)
+  
+## Yijing (Lucy) Zhou
+![Insert Yijing Zhou here](TeamMates/lucyPhoto.jpg)
