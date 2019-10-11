@@ -1,5 +1,5 @@
 # Arkamatch
-
+![Logo](TeamMates/Logo.png)
 
 ## Group Members (name, github):
 **Team member 1:** Mert Dusunceli, mertdusunceli  
