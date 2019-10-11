@@ -1,5 +1,4 @@
-# Arkamatch
-![Logo](TeamMates/Logo.png)
+# Arkamatch <img src="https://github.com/scalableinternetservices/arkamatch/blob/master/TeamMates/Logo.png" width="40px" height="40px">
 
 ## Group Members (name, github):
 **Team member 1:** Mert Dusunceli, mertdusunceli  
