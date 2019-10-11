@@ -15,3 +15,10 @@ A friendship discovery app with matches, filtering, and weekly 6 people group ch
   
 ## Yijing (Lucy) Zhou
 ![Insert Yijing Zhou here](TeamMates/lucyPhoto.jpg)
+
+## Mert Dusunceli 
+![Mert](TeamMates/mertPhoto.JPG)
+
+## Hakan Alpay
+![Hakan](TeamMates/haki.jpg)
+
