@@ -14,14 +14,15 @@ A friendship discovery app with matches, filtering, and weekly 6 people group ch
 
 # Team mates
 ## Anurang
-![Insert Anurangs Image here](TeamMates/anurangPhoto.jpg)
+<img src="https://github.com/scalableinternetservices/arkamatch/blob/master/TeamMates/anurangPhoto.jpg" width="720px" height="720px">
   
 ## Yijing (Lucy) Zhou
-![Insert Yijing Zhou here](TeamMates/lucyPhoto.jpg)
+<img src="https://github.com/scalableinternetservices/arkamatch/blob/master/TeamMates/lucyPhoto.jpg" width="720px" height="720px">
 
 ## Mert Dusunceli 
-![Mert](TeamMates/mertPhoto.JPG)
+<img src="https://github.com/scalableinternetservices/arkamatch/blob/master/TeamMates/mertPhoto.JPG">
+
 
 ## Hakan Alpay
-![Hakan](TeamMates/haki.jpg)
+<img src="https://github.com/scalableinternetservices/arkamatch/blob/master/TeamMates/haki.jpg" width="720px" height="720px">
 
