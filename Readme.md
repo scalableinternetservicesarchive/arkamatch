@@ -1,5 +1,5 @@
 ## Group Members (name, github):
-**Team member 1:** Mert Dusunceli, mertdusunceli  
+**Team member 1:** Mert Dusunceli, mertdusunceli  ![Mert](https://ibb.co/CwQR41X)
 **Team member 2:** Hakan Alpay, kimeiga  
 **Team member 3:** Anurang Bhuta, anurang   
 **Team member 4:** Yijing Zhou, yijingz1227 
