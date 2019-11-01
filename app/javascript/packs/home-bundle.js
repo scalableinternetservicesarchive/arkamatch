@@ -1,9 +1,10 @@
 import ReactOnRails from 'react-on-rails';
-import { Register }  from '../bundles/Authentication/components/Register';
 import {AppHeader} from '../bundles/Home/components/Header';
-import Circle from '../bundles/Authentication/components/Circle';
+import {Main} from '../bundles/Home/components/Main';
+import Root from '../bundles/Home/components/Root';
+import App from '../bundles/Home/components/App';
 
 // This is how react_on_rails can see the HelloWorld in the browser.
 ReactOnRails.register({
-    Register, AppHeader, Circle
+    AppHeader, Main, Root, App
 });

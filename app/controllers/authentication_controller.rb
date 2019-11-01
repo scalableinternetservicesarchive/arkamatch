@@ -5,4 +5,7 @@ class AuthenticationController < ApplicationController
 
   def register
   end
+
+  def register_hobby
+  end
 end
