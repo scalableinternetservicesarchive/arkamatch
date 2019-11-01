@@ -23,7 +23,8 @@ class UserPreferencesController < ApplicationController
                               FROM user_preferences up1
                               JOIN user_preferences up2
                               ON up1.interest=up2.interest
-                              AND up1.name= '#{@user_preference.name}'
+                              AND up1.name = '#{@user_preference.name}'
+                              AND up2.name != '#{@user_preference.name}'
                               GROUP BY up1.name,up2.name
                               ORDER BY num_matches DESC")
   end
