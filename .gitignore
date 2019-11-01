@@ -10,6 +10,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
+/front_end/tmp/*
+/back_end/tmp/*
+/front_end/log/*
+/back_end/log/*
 !/log/.keep
 !/tmp/.keep
 
@@ -23,11 +27,14 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/public/packs
+/front_end/public/packs
+/back_end/public/packs
 /public/packs-test
 /node_modules
+/front_end/node_modules
+/public/packs
+/back_end/node_modules
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-
-.idea
+.idea/
