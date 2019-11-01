@@ -9,7 +9,23 @@ class UserPreferencesController < ApplicationController
 
   # GET /user_preferences/1
   # GET /user_preferences/1.json
+  def execute_sql(sql)
+    results = ActiveRecord::Base.connection.execute(sql)
+    return results
+  end
+
   def show
+    @preferences=execute_sql("SELECT interest
+                              FROM user_preferences
+                              WHERE name= '#{@user_preference.name}'")
+
+    @matches=execute_sql("SELECT up2.name as match, count(*) as num_matches
+                              FROM user_preferences up1
+                              JOIN user_preferences up2
+                              ON up1.interest=up2.interest
+                              AND up1.name= '#{@user_preference.name}'
+                              GROUP BY up1.name,up2.name
+                              ORDER BY num_matches DESC")
   end
 
   # GET /user_preferences/new

@@ -5,10 +5,28 @@
   <%= @user_preference.name %>
 </p>
 
-<p>
-  <strong>Interest:</strong>
-  <%= @user_preference.interest %>
-</p>
+<h2>Interests</h2>
+<table>
+  <tbody>
+  <% @preferences.each do |user_preference| %>
+    <tr>
+      <td><%= user_preference %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>Matches</h2>
+<table>
+  <tbody>
+  <% @matches.each do |match| %>
+    <tr>
+      <td><%= match %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
 
 <%= link_to 'Edit', edit_user_preference_path(@user_preference) %> |
 <%= link_to 'Back', user_preferences_path %>
