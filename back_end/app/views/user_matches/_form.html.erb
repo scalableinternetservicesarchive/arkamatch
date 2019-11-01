@@ -1,0 +1,32 @@
+<%= form_with(model: user_match, local: true) do |form| %>
+  <% if user_match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user_match.errors.count, "error") %> prohibited this user_match from being saved:</h2>
+
+      <ul>
+        <% user_match.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user %>
+    <%= form.text_field :user %>
+  </div>
+
+  <div class="field">
+    <%= form.label :match %>
+    <%= form.text_field :match %>
+  </div>
+
+  <div class="field">
+    <%= form.label :num_matches %>
+    <%= form.text_field :num_matches %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
