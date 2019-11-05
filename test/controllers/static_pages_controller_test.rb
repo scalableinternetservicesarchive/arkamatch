@@ -6,14 +6,20 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     @title_suffix = "Arkamatch"
   end
 
+  test 'should get root like home' do
+    get root_url
+    assert_response :success
+    assert_select "title", "Home | #{@title_suffix}"
+  end
+
   test "should get home" do
-    get static_pages_home_url
+    get home_url
     assert_response :success
     assert_select "title", "Home | #{@title_suffix}"
   end
 
   test "should get help" do
-    get static_pages_help_url
+    get help_url
     assert_response :success
     assert_select "title", "Help | #{@title_suffix}"
   end

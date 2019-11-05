@@ -1,0 +1,51 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+$arkamatch-color: #F56E4C;
+
+.container{
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.arkamatch-header{
+  display: flex;
+  justify-content: start;
+}
+
+#arkamatch-id {
+  font-family: Nurito, fantasy;
+  font-style: normal;
+  letter-spacing: -0.05em;
+  color: $arkamatch-color;
+  font-size: 30px;
+  margin-top: 25px;
+}
+
+.arkamatch-nav {
+  background-color: white;
+}
+
+.view-container {
+  margin-top: 130px;
+}
+
+.center {
+  text-align: center;
+}
+
+.arkamatch-nav-li {
+  font-family: Nurito, fantasy;
+}
+
+.arkamatch-nav-li > li > a {
+  color: $arkamatch-color;
+}
+
+.footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
