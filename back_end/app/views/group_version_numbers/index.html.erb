@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Group Version Numbers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @group_version_numbers.each do |group_version_number| %>
+      <tr>
+        <td><%= group_version_number.version %></td>
+        <td><%= link_to 'Show', group_version_number %></td>
+        <td><%= link_to 'Edit', edit_group_version_number_path(group_version_number) %></td>
+        <td><%= link_to 'Destroy', group_version_number, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group Version Number', new_group_version_number_path %>

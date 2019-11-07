@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user_preference.name %>
+</p>
+
+<h2>Interest that sound similar to "<%=@user_preference.interest %>"</h2>
+<table>
+  <tbody>
+  <% @similar_preferences.each do |user_preference| %>
+    <tr>
+      <td><%= user_preference %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<h2>Interests</h2>
+<table>
+  <tbody>
+  <% @preferences.each do |user_preference| %>
+    <tr>
+      <td><%= user_preference %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>Matches</h2>
+<table>
+  <tbody>
+  <% @matches.each do |match| %>
+    <tr>
+      <td><%= match %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to 'Edit', edit_user_preference_path(@user_preference) %> |
+<%= link_to 'Back', user_preferences_path %>
