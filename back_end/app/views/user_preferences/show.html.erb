@@ -5,7 +5,7 @@
   <%= @user_preference.name %>
 </p>
 
-<h2>Similar Interests</h2>
+<h2>Interest that sound similar to "<%=@user_preference.interest %>"</h2>
 <table>
   <tbody>
   <% @similar_preferences.each do |user_preference| %>

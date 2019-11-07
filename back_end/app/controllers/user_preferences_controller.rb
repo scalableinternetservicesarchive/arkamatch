@@ -19,7 +19,6 @@ class UserPreferencesController < ApplicationController
 
   def show
     # execute_sql("create extension fuzzystrmatch")
-
     @similar_preferences=execute_sql("SELECT interest,count(*) as number_of_people_interested
                               FROM user_preferences
                               WHERE soundex(interest) = soundex('#{@user_preference.interest}')
@@ -40,28 +39,6 @@ class UserPreferencesController < ApplicationController
                               AND up1.interest=up2.interest
                               GROUP BY up1.name,up2.name
                               ORDER BY num_matches DESC")
-    user_with_preference=execute_sql("SELECT name
-                              FROM user_preferences
-                              WHERE interest= 'a' ").to_a
-    user_with_preference.each { |thing| puts thing }
-    num_users_with_interest= user_with_preference.length
-    user_with_preference.each { |thing| puts thing }
-
-    group_size=2
-    num_groups=num_users_with_interest/group_size
-    current_end_of_array=num_users_with_interest
-    puts "num_groups=",num_groups,num_users_with_interest
-    (0...num_groups).each do |group_num|
-      puts group_num
-      (1..group_size).each do
-        chosen_one=rand(0...current_end_of_array)
-        puts user_with_preference[chosen_one],group_num
-        current_end_of_array=current_end_of_array-1
-        user_with_preference[chosen_one]=user_with_preference[current_end_of_array]
-      end
-      end
-
-
   end
 
   # GET /user_preferences/new

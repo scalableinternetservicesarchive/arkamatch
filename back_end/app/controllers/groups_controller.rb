@@ -1,6 +1,15 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
+  def execute_sql(sql)
+    results = ActiveRecord::Base.connection.execute(sql)
+    results.each do |res|
+      puts res
+    end
+    return results
+  end
+
+
   # GET /groups
   # GET /groups.json
   def index
@@ -12,9 +21,60 @@ class GroupsController < ApplicationController
   def show
   end
 
+  def k_group_size
+  2
+  end
+
+  # Takes in a list of all the users interested in a particular interest and creates random groups.
+  def create_groups(interest, user_with_preference,version,group_creating_time)
+    num_users_with_interest= user_with_preference.length
+    num_groups=num_users_with_interest/k_group_size
+    current_end_of_array=num_users_with_interest
+    group_entries=[]
+    (0...num_groups).each do |group_num|
+      puts group_num
+      (1..k_group_size).each do
+        chosen_one=rand(0...current_end_of_array)
+        group_entries.push("('#{interest}', '#{user_with_preference[chosen_one]["name"]}', #{group_num}, #{version},'#{group_creating_time}','#{group_creating_time}')")
+        current_end_of_array=current_end_of_array-1
+        user_with_preference[chosen_one]=user_with_preference[current_end_of_array]
+      end
+    end
+    return group_entries
+  end
+
   # GET /groups/new
   def new
     @group = Group.new
+    old_version=execute_sql("SELECT version from group_version_numbers order by version DESC limit 1").to_a
+    new_version=1
+    group_creating_time=Time.now
+    unless old_version.length == 0
+          new_version=old_version[0]["version"]+1
+    end
+    # Fetch all interests that have at-least k_group_size people interested.
+    interests=execute_sql("SELECT interest
+                              FROM user_preferences
+                              GROUP BY interest
+                              HAVING count(*)>#{k_group_size}")
+    # Fetch all the users interested and create random groups
+    group_entries=[]
+    interests.each do |interest|
+      interest=interest["interest"]
+      users_interested=execute_sql("SELECT name
+                              FROM user_preferences
+                              WHERE interest= '#{interest}' ").to_a
+      # Add the returned entries to group_entries
+      group_entries|=create_groups(interest,users_interested,new_version,group_creating_time)
+    end
+    unless group_entries.empty?
+      # Add the newly created groups to the table
+      insert_groups_query = "INSERT INTO groups (interest, person, group_number,version,created_at,updated_at)\n VALUES\n"
+      insert_groups_query += "#{group_entries * ",\n"}"
+      execute_sql(insert_groups_query)
+      # Add the latest version number to the values after inserting all the new groups
+      execute_sql("INSERT INTO group_version_numbers (version,created_at,updated_at) VALUES (#{new_version},'#{group_creating_time}','#{group_creating_time}')")
+    end
   end
 
   # GET /groups/1/edit
