@@ -35,8 +35,14 @@
 /public/packs-test
 /node_modules
 /front_end/node_modules
+/front_end/front_end/node_modules
+/front_end/front_end/tmp
 /back_end/node_modules
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
 .idea/
+
+# Ignore IDE related files
+.idea/
+
