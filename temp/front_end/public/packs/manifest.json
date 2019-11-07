@@ -1,0 +1,34 @@
+{
+  "application.js": "/packs/js/application-05bc83490fcade04d051.js",
+  "application.js.map": "/packs/js/application-05bc83490fcade04d051.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs/js/application-05bc83490fcade04d051.js"
+      ],
+      "js.map": [
+        "/packs/js/application-05bc83490fcade04d051.js.map"
+      ]
+    },
+    "hello_react": {
+      "js": [
+        "/packs/js/hello_react-6c53f5056f0b2b8d772c.js"
+      ],
+      "js.map": [
+        "/packs/js/hello_react-6c53f5056f0b2b8d772c.js.map"
+      ]
+    },
+    "hello-world-bundle": {
+      "js": [
+        "/packs/js/hello-world-bundle-2b2555ac0c69f78e7b4c.js"
+      ],
+      "js.map": [
+        "/packs/js/hello-world-bundle-2b2555ac0c69f78e7b4c.js.map"
+      ]
+    }
+  },
+  "hello-world-bundle.js": "/packs/js/hello-world-bundle-2b2555ac0c69f78e7b4c.js",
+  "hello-world-bundle.js.map": "/packs/js/hello-world-bundle-2b2555ac0c69f78e7b4c.js.map",
+  "hello_react.js": "/packs/js/hello_react-6c53f5056f0b2b8d772c.js",
+  "hello_react.js.map": "/packs/js/hello_react-6c53f5056f0b2b8d772c.js.map"
+}
