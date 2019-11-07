@@ -5,6 +5,18 @@
   <%= @user_preference.name %>
 </p>
 
+<h2>Similar Interests</h2>
+<table>
+  <tbody>
+  <% @similar_preferences.each do |user_preference| %>
+    <tr>
+      <td><%= user_preference %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
 <h2>Interests</h2>
 <table>
   <tbody>

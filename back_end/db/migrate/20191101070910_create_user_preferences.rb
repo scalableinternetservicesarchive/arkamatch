@@ -5,6 +5,7 @@ class CreateUserPreferences < ActiveRecord::Migration[6.0]
       t.string :interest
 
       t.timestamps
+
     end
   end
 end

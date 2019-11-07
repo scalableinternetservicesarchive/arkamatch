@@ -1,0 +1,2 @@
+class GroupVersionNumber < ApplicationRecord
+end

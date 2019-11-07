@@ -11,14 +11,27 @@ class UserPreferencesController < ApplicationController
   # GET /user_preferences/1.json
   def execute_sql(sql)
     results = ActiveRecord::Base.connection.execute(sql)
+    results.each do |res|
+      puts res
+    end
     return results
   end
 
   def show
+    # execute_sql("create extension fuzzystrmatch")
+
+    @similar_preferences=execute_sql("SELECT interest,count(*) as number_of_people_interested
+                              FROM user_preferences
+                              WHERE soundex(interest) = soundex('#{@user_preference.interest}')
+                               GROUP BY interest
+                                ORDER BY number_of_people_interested DESC")
+
+    words_in_string=@user_preference.interest.split(' ')
+
     @preferences=execute_sql("SELECT interest
                               FROM user_preferences
                               WHERE name= '#{@user_preference.name}'")
-
+    # puts @preferences
     @matches=execute_sql("SELECT up2.name as match, count(*) as num_matches
                               FROM user_preferences up1
                               JOIN user_preferences up2
@@ -27,6 +40,28 @@ class UserPreferencesController < ApplicationController
                               AND up1.interest=up2.interest
                               GROUP BY up1.name,up2.name
                               ORDER BY num_matches DESC")
+    user_with_preference=execute_sql("SELECT name
+                              FROM user_preferences
+                              WHERE interest= 'a' ").to_a
+    user_with_preference.each { |thing| puts thing }
+    num_users_with_interest= user_with_preference.length
+    user_with_preference.each { |thing| puts thing }
+
+    group_size=2
+    num_groups=num_users_with_interest/group_size
+    current_end_of_array=num_users_with_interest
+    puts "num_groups=",num_groups,num_users_with_interest
+    (0...num_groups).each do |group_num|
+      puts group_num
+      (1..group_size).each do
+        chosen_one=rand(0...current_end_of_array)
+        puts user_with_preference[chosen_one],group_num
+        current_end_of_array=current_end_of_array-1
+        user_with_preference[chosen_one]=user_with_preference[current_end_of_array]
+      end
+      end
+
+
   end
 
   # GET /user_preferences/new

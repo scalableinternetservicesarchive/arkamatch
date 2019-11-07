@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_01_070910) do
+ActiveRecord::Schema.define(version: 2019_11_07_032140) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "fuzzystrmatch"
+  enable_extension "plpgsql"
+
+  create_table "group_version_numbers", force: :cascade do |t|
+    t.integer "version"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "interest"
+    t.string "person"
+    t.integer "group_number"
+    t.integer "version"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "user_preferences", force: :cascade do |t|
     t.string "name"
