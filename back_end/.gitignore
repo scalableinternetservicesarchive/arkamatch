@@ -4,6 +4,19 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+
+/.idea
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+/front_end/tmp/*
+/back_end/tmp/*
+/front_end/log/*
+/back_end/log/*
 # Ignore bundler config.
 /.bundle
 
@@ -26,6 +39,22 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+/front_end/public/packs
+/back_end/public/packs
+/public/packs-test
+/node_modules
+/front_end/node_modules
+/front_end/front_end/node_modules
+/front_end/front_end/tmp
+/back_end/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+.idea/
+
+# Ignore IDE related files
+.idea/
 
 /public/packs
 /public/packs-test
