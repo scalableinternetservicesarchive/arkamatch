@@ -1,5 +1,5 @@
 {
-  "name": "back_end",
+  "name": "rails_chat_tutorial",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0-alpha",
