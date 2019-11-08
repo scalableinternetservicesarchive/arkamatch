@@ -1,0 +1,93 @@
+Started GET "/" for ::1 at 2019-11-07 00:25:07 -0800
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 1.7ms | Allocations: 500)
+[Webpacker] Compiling…
+Started GET "/" for ::1 at 2019-11-07 00:25:13 -0800
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 0.4ms | Allocations: 64)
+[Webpacker] Compiling…
+[Webpacker] Compiled all packs in /Users/yijingz/RubymineProjects/arkamatch/front_end/public/packs
+  Rendered layouts/_shim.html.erb (Duration: 0.7ms | Allocations: 99)
+  Rendered layouts/_header.html.erb (Duration: 1.9ms | Allocations: 778)
+[Webpacker] Compiled all packs in /Users/yijingz/RubymineProjects/arkamatch/front_end/public/packs
+  Rendered layouts/_footer.html.erb (Duration: 0.7ms | Allocations: 549)
+Completed 200 OK in 11140ms (Views: 11135.1ms | ActiveRecord: 0.0ms | Allocations: 22141)
+
+
+  Rendered layouts/_shim.html.erb (Duration: 0.2ms | Allocations: 6)
+  Rendered layouts/_header.html.erb (Duration: 1.8ms | Allocations: 588)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 17732ms (Views: 17723.6ms | ActiveRecord: 0.0ms | Allocations: 3993797)
+
+
+Started GET "/signup" for ::1 at 2019-11-07 00:25:29 -0800
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (Duration: 0.6ms | Allocations: 209)
+  Rendered users/new.html.erb within layouts/application (Duration: 21.4ms | Allocations: 6404)
+  Rendered layouts/_shim.html.erb (Duration: 0.0ms | Allocations: 5)
+  Rendered layouts/_header.html.erb (Duration: 17.3ms | Allocations: 587)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 86ms (Views: 61.0ms | ActiveRecord: 11.9ms | Allocations: 30114)
+
+
+Started POST "/users" for ::1 at 2019-11-07 00:25:40 -0800
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"rkOrN46+dx5KxjhXLxk1AjNu48SIyQU44nG7Xf54YnxkwK9gA8PAEdIt7hY4xSNVXFDy8RHEPY7ePN2D4sU38Q==", "user"=>{"first_name"=>"Yijing ", "last_name"=>"Zhou", "email"=>"yijingz1227@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (5.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "yijingz1227@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (Duration: 0.4ms | Allocations: 164)
+  Rendered users/new.html.erb within layouts/application (Duration: 2.9ms | Allocations: 1410)
+  Rendered layouts/_shim.html.erb (Duration: 0.0ms | Allocations: 5)
+  Rendered layouts/_header.html.erb (Duration: 1.0ms | Allocations: 580)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 269ms (Views: 25.8ms | ActiveRecord: 5.7ms | Allocations: 22676)
+
+
+Started POST "/users" for ::1 at 2019-11-07 00:25:47 -0800
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"tc5X/FMfOSRPKOKFtXItjqGI5d+MfWb0R0Pj2FevV/d3lh+1p40saMsXEqTvqynW5obEq3XoQSAPMPbcmVyvFQ==", "user"=>{"first_name"=>"Yijing ", "last_name"=>"Zhou", "email"=>"yijingzhou1227@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "yijingzhou1227@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[36mUser Create (9.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "created_at", "updated_at", "password_digest") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["first_name", "Yijing "], ["last_name", "Zhou"], ["email", "yijingzhou1227@gmail.com"], ["created_at", "2019-11-07 08:25:47.853904"], ["updated_at", "2019-11-07 08:25:47.853904"], ["password_digest", "$2a$12$G/9aNLmci23oqEtCbp/B0.xK5dyjNuIcZKcKOx08NyZyMJ1ufJOGa"]]
+  ↳ app/controllers/users_controller.rb:12:in `create'
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:12:in `create'
+Redirected to http://localhost:3000/users/3
+Completed 302 Found in 237ms (ActiveRecord: 10.4ms | Allocations: 4033)
+
+
+Started GET "/users/3" for ::1 at 2019-11-07 00:25:47 -0800
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:3:in `show'
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 201)
+  Rendered layouts/_shim.html.erb (Duration: 0.0ms | Allocations: 6)
+  Rendered layouts/_header.html.erb (Duration: 0.7ms | Allocations: 610)
+  Rendered layouts/_footer.html.erb (Duration: 0.0ms | Allocations: 5)
+Completed 200 OK in 23ms (Views: 18.7ms | ActiveRecord: 0.5ms | Allocations: 17884)
+
+
+Started GET "/" for ::1 at 2019-11-07 00:31:32 -0800
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 1.9ms | Allocations: 500)
+  Rendered layouts/_shim.html.erb (Duration: 0.4ms | Allocations: 99)
+  Rendered layouts/_header.html.erb (Duration: 1.4ms | Allocations: 772)
+  Rendered layouts/_footer.html.erb (Duration: 0.4ms | Allocations: 90)
+Completed 200 OK in 1387ms (Views: 1380.2ms | ActiveRecord: 0.0ms | Allocations: 1740965)
+
+
