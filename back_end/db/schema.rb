@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 2019_11_07_032140) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "fuzzystrmatch"
   enable_extension "plpgsql"
 
   create_table "group_version_numbers", force: :cascade do |t|
@@ -31,16 +30,9 @@ ActiveRecord::Schema.define(version: 2019_11_07_032140) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "user_preferences", force: :cascade do |t|
-    t.string "name"
-    t.string "interest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "room_messages", force: :cascade do |t|
-    t.integer "room_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "room_id", null: false
+    t.bigint "user_id", null: false
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -53,6 +45,13 @@ ActiveRecord::Schema.define(version: 2019_11_07_032140) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_rooms_on_name", unique: true
+  end
+
+  create_table "user_preferences", force: :cascade do |t|
+    t.string "name"
+    t.string "interest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
