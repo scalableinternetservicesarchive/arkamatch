@@ -16,7 +16,7 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-require("rails-ujs")
+// require("rails-ujs")
 require("activestorage")
 require("jquery3")
 require("popper")
