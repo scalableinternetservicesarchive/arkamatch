@@ -23,13 +23,13 @@ class UserPreferencesController < ApplicationController
                               FROM user_preferences
                               WHERE soundex(interest) = soundex('#{@user_preference.interest}')
                                GROUP BY interest
-                                ORDER BY number_of_people_interested DESC")
+                                ORDER BY number_of_people_interested DESC").to_a
 
     words_in_string=@user_preference.interest.split(' ')
 
     @preferences=execute_sql("SELECT interest
                               FROM user_preferences
-                              WHERE name= '#{@user_preference.name}'")
+                              WHERE name= '#{@user_preference.name}'").to_a
     # puts @preferences
     @matches=execute_sql("SELECT up2.name as match, count(*) as num_matches
                               FROM user_preferences up1
@@ -38,12 +38,13 @@ class UserPreferencesController < ApplicationController
                               AND up2.name != '#{@user_preference.name}'
                               AND up1.interest=up2.interest
                               GROUP BY up1.name,up2.name
-                              ORDER BY num_matches DESC")
+                              ORDER BY num_matches DESC").to_a
   end
 
   # GET /user_preferences/new
   def new
     @user_preference = UserPreference.new
+    @user_preference.name=current_user.username
   end
 
   # GET /user_preferences/1/edit
@@ -53,7 +54,8 @@ class UserPreferencesController < ApplicationController
   # POST /user_preferences
   # POST /user_preferences.json
   def create
-    @user_preference = UserPreference.new(user_preference_params)
+    @account = current_user
+    @user_preference = UserPreference.new(user_preference_params.merge(:name =>current_user.username))
 
     respond_to do |format|
       if @user_preference.save
