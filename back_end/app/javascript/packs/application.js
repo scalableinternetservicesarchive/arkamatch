@@ -17,7 +17,7 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 // require("rails-ujs")
-require("activestorage")
+// require("activestorage")
 require("jquery3")
 require("popper")
 require("bootstrap-sprockets")
