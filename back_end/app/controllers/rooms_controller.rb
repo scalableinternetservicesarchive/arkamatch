@@ -28,6 +28,17 @@ class RoomsController < ApplicationController
       @rooms = Room.where(name: room_names_)
     end
 
+
+    def get_members
+      @room_members=execute_sql("select DISTINCT person
+                                FROM groups JOIN
+                                rooms ON
+                                CONCAT(interest,'.',version,'.', group_number)=rooms.name
+                                AND rooms.id=#{params[:id]}"
+                                ).to_a
+      # puts @room_members
+    end
+
     def index
       get_rooms
     end
@@ -69,6 +80,7 @@ class RoomsController < ApplicationController
     def load_entities
       get_rooms
       @room = Room.find(params[:id]) if params[:id]
+      get_members if params[:id]
     end
   
     def permitted_parameters

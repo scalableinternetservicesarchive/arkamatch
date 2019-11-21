@@ -71,3 +71,14 @@
     </div>
   </div>
 </div>
+
+<h2>Members</h2>
+<table>
+  <tbody>
+  <% @room_members.each do |member| %>
+    <tr>
+      <td><%= member %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
