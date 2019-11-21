@@ -10,8 +10,14 @@ class YoursController < ApplicationController
 
     def profile
       @account = current_user
-      @preferences=execute_sql("SELECT interest
-                              FROM user_preferences
-                              WHERE name= '#{current_user.username}'").to_a
+      @preferences=execute_sql("SELECT up.interest,
+                                    (SELECT COUNT(*)
+                                      FROM user_preferences up1
+                                       WHERE up.interest=up1.interest AND name!='#{current_user.username}')
+                                    AS number_of_people_interested
+                              FROM user_preferences up
+                              WHERE name= '#{current_user.username}'
+                              ORDER BY number_of_people_interested DESC").to_a
+
     end
    end

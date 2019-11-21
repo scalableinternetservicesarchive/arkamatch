@@ -3,9 +3,33 @@ class RoomsController < ApplicationController
     # @rooms = all rooms
     # @room = current room when applicable
     before_action :load_entities
-  
+
+    def execute_sql(sql)
+      results = ActiveRecord::Base.connection.execute(sql)
+      results.each do |res|
+        puts res
+      end
+      return results
+    end
+
+    def get_rooms
+      room_names=execute_sql("select CONCAT(interest,'.',version,'.', group_number)
+                                FROM groups
+                                WHERE
+                                person='#{current_user.username}'
+                                AND
+                                version in (SELECT version from group_version_numbers order by version DESC limit 1)
+").to_a
+      puts room_names
+      room_names_=[]
+      room_names.each do |name|
+        room_names_.push(name["concat"])
+      end
+      @rooms = Room.where(name: room_names_)
+    end
+
     def index
-      @rooms = Room.all
+      get_rooms
     end
   
     def new
@@ -14,7 +38,7 @@ class RoomsController < ApplicationController
   
     def create
       @room = Room.new permitted_parameters
-  
+      puts permitted_parameters
       if @room.save
         flash[:success] = "Room #{@room.name} was created successfully"
         redirect_to rooms_path
@@ -43,7 +67,7 @@ class RoomsController < ApplicationController
     protected
   
     def load_entities
-      @rooms = Room.all
+      get_rooms
       @room = Room.find(params[:id]) if params[:id]
     end
   

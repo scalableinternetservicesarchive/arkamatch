@@ -25,6 +25,10 @@ class GroupsController < ApplicationController
   2
   end
 
+  def get_group_name(interest,version,group_num)
+    interest+"."+version.to_s+"."+group_num.to_s
+  end
+
   # Takes in a list of all the users interested in a particular interest and creates random groups.
   def create_groups(interest, user_with_preference,version,group_creating_time)
     num_users_with_interest= user_with_preference.length
@@ -32,6 +36,13 @@ class GroupsController < ApplicationController
     current_end_of_array=num_users_with_interest
     group_entries=[]
     (0...num_groups).each do |group_num|
+      group_name=get_group_name(interest,version,group_num)
+      json={:name => group_name}
+      room =Room.new json
+      unless room.save
+        format.html { redirect_to @group, notice: 'An error ocored with group creation.' }
+        break
+      end
       puts group_num
       (1..k_group_size).each do
         chosen_one=rand(0...current_end_of_array)
