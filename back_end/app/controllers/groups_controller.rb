@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
+
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  # before_filter :authorize_admin
 
   def execute_sql(sql)
     results = ActiveRecord::Base.connection.execute(sql)
@@ -56,6 +58,10 @@ class GroupsController < ApplicationController
 
   # GET /groups/new
   def new
+    authorize_admin
+    # redirect_to rooms_url, alert: 'Access Denied'
+    # format.html { redirect_to user_preferences_url, notice: 'User preference was successfully destroyed.' }
+
     @group = Group.new
     old_version=execute_sql("SELECT version from group_version_numbers order by version DESC limit 1").to_a
     new_version=1
@@ -90,11 +96,15 @@ class GroupsController < ApplicationController
 
   # GET /groups/1/edit
   def edit
+    authorize_admin
+
   end
 
   # POST /groups
   # POST /groups.json
   def create
+    authorize_admin
+
     @group = Group.new(group_params)
 
     respond_to do |format|
@@ -111,6 +121,8 @@ class GroupsController < ApplicationController
   # PATCH/PUT /groups/1
   # PATCH/PUT /groups/1.json
   def update
+    authorize_admin
+
     respond_to do |format|
       if @group.update(group_params)
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
@@ -125,6 +137,7 @@ class GroupsController < ApplicationController
   # DELETE /groups/1
   # DELETE /groups/1.json
   def destroy
+    authorize_admin
     @group.destroy
     respond_to do |format|
       format.html { redirect_to groups_url, notice: 'Group was successfully destroyed.' }
@@ -138,8 +151,16 @@ class GroupsController < ApplicationController
       @group = Group.find(params[:id])
     end
 
+  def authorize_admin
+    unless current_user.username=="admin"
+    redirect_to rooms_url, alert: 'Access Denied'
+      end
+  end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
       params.require(:group).permit(:interest, :person, :group_number, :version)
     end
+end
+class ApplicationController < ActionController::Base
 end
