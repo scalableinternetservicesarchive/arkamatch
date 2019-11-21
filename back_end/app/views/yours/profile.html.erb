@@ -1,34 +1,34 @@
 <h1>My Profile</h1>
+<p>Here you can add new interests or review current ones!</p>
+<br/>
+<div>
+  <p style="float: left;"><img style="width: 300px" src=<%= @account.gravatar_url %>></img><p>
 
-<img style="width: 500px" src=<%= @account.gravatar_url %>></img>
+</div>
+<div style="display:inline-block; margin: 20px">
+  <div> <span style="font-weight:lighter;">Username</span>&emsp;&emsp;&ensp;&ensp;<span>  <%= @account.username %></span> </div>
+  <div> <span style="font-weight:lighter;">Email</span>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<span>  <%= @account.email %></span> </div>
+  <div> <span style="font-weight:lighter;">Member since</span>&emsp;&ensp;<span>  <%= @account.created_at.to_date %></span> </div>
+  <span style="font-weight:lighter;">My interests</span>
 
-<h2>Username</h2>
-<h6><%= @account.username %></h6>
+  <span>
+  <table>
+    <tbody>
+    <% @preferences.each do |user_preference| %>
+      <tr>
+        <td><%= user_preference['interest'] %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 
-<h2>Email</h2>
-<h6><%= @account.email %></h6>
+  <div style="font-weight:bolder;" id="button"><a href="user_preferences/new">Add preference</a></div>
 
-<h2>Created At</h2>
-<h6><%= @account.created_at %></h6>
-
-<h2>Updated At</h2>
-<h6><%= @account.updated_at %></h6>
-
-
-<h2>My interests</h2>
-
-<table>
-  <tbody>
-  <% @preferences.each do |user_preference| %>
-    <tr>
-      <td><%= user_preference %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
-  <div id="button"><a href="user_preferences/new">Add preference</a></div>
-
+  </span>
+</div>
+<br/>
+<br/>
+<br/>
 
 
 <!--  <button onclick="window.location.href = 'user_preferences';">Click Here</button>-->
