@@ -10,6 +10,8 @@ class YoursController < ApplicationController
 
     def profile
       @account = current_user
+      execute_sql("create extension IF NOT EXISTS fuzzystrmatch;")
+      execute_sql("create extension IF NOT EXISTS pg_trgm;")
       @preferences=execute_sql("SELECT up.interest,
                                     (SELECT COUNT(*)
                                       FROM user_preferences up1
