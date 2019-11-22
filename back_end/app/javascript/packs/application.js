@@ -18,7 +18,7 @@ require("channels")
 
 // require("rails-ujs")
 // require("activestorage")
-require("jquery3")
+require("jquery")
 require("popper")
 require("bootstrap-sprockets")
 // require_tree .
