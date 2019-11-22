@@ -9,14 +9,19 @@
   <div> <span style="font-weight:lighter;">Username</span>&emsp;&emsp;&ensp;&ensp;<span>  <%= @account.username %></span> </div>
   <div> <span style="font-weight:lighter;">Email</span>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<span>  <%= @account.email %></span> </div>
   <div> <span style="font-weight:lighter;">Member since</span>&emsp;&ensp;<span>  <%= @account.created_at.to_date %></span> </div>
-  <span style="font-weight:lighter;">My interests</span>
-
   <span>
   <table>
     <tbody>
+    <tr>
+    <th >My interests</th>
+    <th> </th>
+    <th >Number of people interested</th>
+    </tr>
     <% @preferences.each do |user_preference| %>
       <tr>
-        <td><%= user_preference['interest'] %></td>
+        <td><%=user_preference['interest']%></td>
+        <td> </td>
+        <td style="text-align:center"><%=user_preference['number_of_people_interested']%></td>
       </tr>
     <% end %>
     </tbody>
