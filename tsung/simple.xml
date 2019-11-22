@@ -4,7 +4,7 @@
 
   <!-- Client side setup -->
   <clients>
-    <client host="localhost" use_controller_vm="true" maxusers="150000"/>
+    <client host="localhost" use_controller_vm="true" maxusers="1000"/>
   </clients>
 
   <!-- Server side setup -->
@@ -51,8 +51,8 @@
       <!-- the user took a look at our sign up page; very intrigued! -->
       <request>
         <http url="/users/sign_up" version="1.1" method="GET"></http>
-      </request> 
-
+      </request>
+      <thinktime value="10" random="true"/>
       <!-- they decided to sign up -->
       <setdynvars sourcetype="file" fileid="test" delimiter="," order="random">
         <var name="user_email"/>
@@ -65,6 +65,10 @@
         <http url="/users" version="1.1" method="POST" content_type="application/x-www-form-urlencoded" contents="user%5Bemail%5D=%%_user_email%%%40abc.com&amp;user%5Busername%5D=%%_user_user_name%%&amp;user%5Bpassword%5D=%%_user_password%%&amp;user%5Bpassword_confirmation%5D=%%_user_password%%&amp;commit=Sign+up"></http>
       </request>
 
+      <request>
+        <http url="/users/sign_out" version="1.1" method="DELETE" content_type="application/x-www-form-urlencoded"/>
+      </request>
+
       <!-- then they go to the log in page -->
       <request>
         <http url="/users/sign_in" version="1.1" method="GET"></http>
@@ -73,7 +77,7 @@
       <thinktime value="10" random="true"></thinktime>
       <!-- then they actually send in the log in request -->
       <request subst="true">
-        <http url="/users/sign_in" version="1.1" method="POST" content_type="application/x-www-form-urlencoded" contents="user%5Bemail%5D=%%_user_email%%%40gmail.com&amp;user%5Bpassword%5D=%%_user_password%%"></http>
+        <http url="/users/sign_in" version="1.1" method="POST" content_type="application/x-www-form-urlencoded" contents="user%5Bemail%5D=%%_user_email%%%40abc.com&amp;user%5Bpassword%5D=%%_user_password%%"></http>
       </request>
 
     </session>
