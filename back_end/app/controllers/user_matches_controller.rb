@@ -1,10 +1,24 @@
 class UserMatchesController < ApplicationController
   before_action :set_user_match, only: [:show, :edit, :update, :destroy]
-
+  def execute_sql(sql)
+    results = ActiveRecord::Base.connection.execute(sql)
+    results.each do |res|
+      puts res
+    end
+    return results
+  end
   # GET /user_matches
   # GET /user_matches.json
   def index
-    @user_matches = UserMatch.all
+    @user_matches=execute_sql("SELECT up2.name as match, count(*) as num_matches
+    FROM user_preferences up1
+    JOIN user_preferences up2
+    ON up1.name = '#{current_user.username}'
+    AND up2.name != '#{current_user.username}'
+    AND up1.interest=up2.interest
+    GROUP BY up1.name,up2.name
+    ORDER BY num_matches DESC").to_a
+    # @user_matches = UserMatch.all
   end
 
   # GET /user_matches/1
@@ -24,31 +38,31 @@ class UserMatchesController < ApplicationController
   # POST /user_matches
   # POST /user_matches.json
   def create
-    @user_match = UserMatch.new(user_match_params)
+    # @user_match = UserMatch.new(user_match_params)
 
-    respond_to do |format|
-      if @user_match.save
-        format.html { redirect_to @user_match, notice: 'User match was successfully created.' }
-        format.json { render :show, status: :created, location: @user_match }
-      else
-        format.html { render :new }
-        format.json { render json: @user_match.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @user_match.save
+    #     format.html { redirect_to @user_match, notice: 'User match was successfully created.' }
+    #     format.json { render :show, status: :created, location: @user_match }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @user_match.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /user_matches/1
   # PATCH/PUT /user_matches/1.json
   def update
-    respond_to do |format|
-      if @user_match.update(user_match_params)
-        format.html { redirect_to @user_match, notice: 'User match was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user_match }
-      else
-        format.html { render :edit }
-        format.json { render json: @user_match.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @user_match.update(user_match_params)
+    #     format.html { redirect_to @user_match, notice: 'User match was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @user_match }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @user_match.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # DELETE /user_matches/1

@@ -152,7 +152,7 @@ class GroupsController < ApplicationController
     end
 
   def authorize_admin
-    unless current_user.username=="admin"
+    unless current_user.username=="system_admin"
     redirect_to rooms_url, alert: 'Access Denied'
       end
   end

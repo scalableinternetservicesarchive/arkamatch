@@ -15,12 +15,7 @@
   <tbody>
     <% @user_matches.each do |user_match| %>
       <tr>
-        <td><%= user_match.user %></td>
-        <td><%= user_match.match %></td>
-        <td><%= user_match.num_matches %></td>
-        <td><%= link_to 'Show', user_match %></td>
-        <td><%= link_to 'Edit', edit_user_match_path(user_match) %></td>
-        <td><%= link_to 'Destroy', user_match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= user_match %></td>
       </tr>
     <% end %>
   </tbody>

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :room_messages
   resources :rooms
-  devise_for :users
+  devise_for :users, controllers: { sessions: "users/sessions" }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # resources :myprofiles
