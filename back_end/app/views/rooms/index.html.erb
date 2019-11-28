@@ -1,23 +1,25 @@
+<h1>Groups</h1>
 <div class="row">
   <div class="col-12 col-md-3">
     <%= render partial: 'rooms' %>
   </div>
 
   <div class="col">
-    <div class="alert alert-primary">
       <h4 class="alert-heading">
-        Welcome to the RailsChatTutorial!
+       We create groups of 6 random people based on your interests every week!
       </h4>
-
+      <% if @rooms.present? %>
       <p>
-        We need to talk.
+        The rooms show up on the left side bar, happy chattting arkadash ;)
       </p>
-
+        <% else %>
+        <p>
+        The rooms show up on the left side bar, seems like you dont have any groups yet :O
+        but no worries we will find poeple for you very soon ;)
+        Keep <a href="/user_preferences/new"><b>adding interests</b></a> to increase your chances Arkadash!
+      </p>
+      <% end %>
       <hr />
 
-      <p>
-        You can create or join a room from the sidebar.
-      </p>
-    </div>
   </div>
 </div>
