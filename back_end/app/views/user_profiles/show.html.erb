@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<%# <%=@preferences%> %>
+<table>
+    <tbody>
+    <tr>
+    <th >My interests</th>
+    <th> </th>
+    <th >Number of people interested</th>
+    </tr>
+    <% @preferences.each do |user_preference| %>
+      <tr>
+        <td><%=user_preference['interest']%></td>
+        <td> </td>
+        <td style="text-align:center"><%=user_preference['number_of_people_interested']%></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<%# <%= link_to 'Edit', edit_user_profile_path(@user_profile) %> |
+<%# <%= link_to 'Back', user_profiles_path %> %> %>

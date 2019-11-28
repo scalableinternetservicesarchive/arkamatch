@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<% if @user_name.present? %>
+<h1><%=@user_name%></h1>
+<div>
+  <p style="float: left;"><img style="width: 300px" src=<%= @gravatar_url %>></img><p>
+
+</div>
+<div style="display:inline-block; margin: 20px">
+<p>You have <%=@num_interests["count"]%> common interest(s)!</p>
+  <span>
+  <table>
+    <tbody>
+    <tr>
+    <th >Common interest</th>
+    </tr>
+    <% @preferences.each do |user_preference| %>
+      <tr>
+        <td><%=user_preference['interest']%></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  </span>
+</div>
+<br/>
+<br/>
+<br/>
+<% else %>
+<h1>Seems like you are not matched to this user or the user is no longer with arkamatch :O</h1>
+<% end %>
