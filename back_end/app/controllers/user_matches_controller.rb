@@ -18,6 +18,9 @@ class UserMatchesController < ApplicationController
     AND up1.interest=up2.interest
     GROUP BY up1.name,up2.name
     ORDER BY num_matches DESC").to_a
+
+    @paginable = Kaminari.paginate_array(@user_matches).page(params[:page]).per(10)
+
     # @user_matches = UserMatch.all
   end
 
