@@ -10,18 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_011437) do
+ActiveRecord::Schema.define(version: 2019_11_30_004901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
-
-  create_table "gros", force: :cascade do |t|
-    t.integer "version"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "group_version_numbers", force: :cascade do |t|
     t.integer "version"
@@ -88,4 +82,14 @@ ActiveRecord::Schema.define(version: 2019_11_28_011437) do
 
   add_foreign_key "room_messages", "rooms"
   add_foreign_key "room_messages", "users"
+
+  create_view "match_reports", materialized: true, sql_definition: <<-SQL
+      SELECT up1.name AS username,
+      up2.name AS match,
+      count(*) AS num_matches
+     FROM (user_preferences up1
+       JOIN user_preferences up2 ON (((up1.interest)::text = (up2.interest)::text)))
+    GROUP BY up1.name, up2.name
+    ORDER BY (count(*)) DESC;
+  SQL
 end

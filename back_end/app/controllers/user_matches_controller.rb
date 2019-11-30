@@ -10,16 +10,18 @@ class UserMatchesController < ApplicationController
   # GET /user_matches
   # GET /user_matches.json
   def index
-    @user_matches=execute_sql("SELECT up2.name as match, count(*) as num_matches
+    @user_matches=execute_sql("
+    SELECT up1.name as name, up2.name as match, count(*) as num_matches
     FROM user_preferences up1
     JOIN user_preferences up2
-    ON up1.name = '#{current_user.username}'
-    AND up2.name != '#{current_user.username}'
-    AND up1.interest=up2.interest
+    ON up1.interest=up2.interest
     GROUP BY up1.name,up2.name
     ORDER BY num_matches DESC").to_a
 
-    @paginable = Kaminari.paginate_array(@user_matches).page(params[:page]).per(10)
+    # @newquery = execute_sql("SELECT * FROM match_reports")
+
+
+    @paginable = Kaminari.paginate_array(@user_matches).page(params[:page]).per(100)
 
     # @user_matches = UserMatch.all
   end
