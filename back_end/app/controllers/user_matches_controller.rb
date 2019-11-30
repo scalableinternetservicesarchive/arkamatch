@@ -14,11 +14,15 @@ class UserMatchesController < ApplicationController
     SELECT up1.name as name, up2.name as match, count(*) as num_matches
     FROM user_preferences up1
     JOIN user_preferences up2
-    ON up1.interest=up2.interest
+    ON up1.name = '#{current_user.username}'
+    AND up2.name != '#{current_user.username}'AND  up1.interest=up2.interest
     GROUP BY up1.name,up2.name
     ORDER BY num_matches DESC").to_a
 
-    # @newquery = execute_sql("SELECT * FROM match_reports")
+    @user_matches_using_materialised_view = execute_sql("SELECT match, num_matches 
+      FROM match_reports 
+      WHERE username='#{current_user.username}' and match!='#{current_user.username}'
+      ORDER BY  num_matches DESC")
 
 
     @paginable = Kaminari.paginate_array(@user_matches).page(params[:page]).per(100)
