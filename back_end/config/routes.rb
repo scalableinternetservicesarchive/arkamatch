@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_profiles
   # resources :myprofiles
   resources :group_version_numbers
   resources :groups
