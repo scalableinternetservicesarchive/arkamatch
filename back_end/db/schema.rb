@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2019_11_15_204640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
+  enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
   create_table "gros", force: :cascade do |t|
