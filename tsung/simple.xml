@@ -35,7 +35,7 @@
       <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
     </option>
 
-    <option name="file_server" value="PATH_PLACEHOLDER" id="test"/>
+    <option name="file_server" value="/Users/yijingz/RubymineProjects/arkamatch/tsung/test.csv" id="test"/>
 
   </options>
 
@@ -79,6 +79,10 @@
       </request>
 
       <request>
+        <http url="/user_matches" version="1.1" method="GET" />
+      </request>
+
+      <request>
         <dyn_variable name="room_number" re="Room number is: (.*)&lt;/span>"></dyn_variable>
         <http url="/" version="1.1" method="GET" />
       </request>
@@ -93,10 +97,6 @@
 
       <request subst="true">
         <http url="/room_messages" version="1.1" method="POST" content_type="application/x-www-form-urlencoded" contents="room_message%5Bmessage%5D=%%_room_number%%&amp;room_message%5Broom_id%5D=%%_room_number%%&amp;commit=Send"/>
-      </request>
-
-      <request>
-        <http url="/user_matches" version="1.1" method="GET" />
       </request>
       <!--END OF MATCHING STAGE -->
 
