@@ -1,12 +1,14 @@
 
 
 <% if @rooms.present? %>
+  <% @rooms.each do |room| %>
+  <label>
+    <span>Room number is: <%= room.id %></span>
+  </label>
+  <% end %>
   <nav class="nav flex-column">
     <% @rooms.each do |room| %>
       <%= link_to room.name, room_path(room), class: 'nav-link room-nav-link' %>
-      <form action="go.cgi" method="POST">
-        <hidden name="room_number" value=<%= room.id %>></hidden>
-      </form>
     <% end %>
   </nav>
 <% else %>
