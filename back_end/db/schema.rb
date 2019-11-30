@@ -17,6 +17,12 @@ ActiveRecord::Schema.define(version: 2019_11_30_004901) do
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
 
+  create_table "gros", force: :cascade do |t|
+    t.integer "version"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "group_version_numbers", force: :cascade do |t|
     t.integer "version"
     t.datetime "created_at", precision: 6, null: false
