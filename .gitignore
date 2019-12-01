@@ -46,3 +46,4 @@ yarn-debug.log*
 # Ignore IDE related files
 .idea/
 
+/tsung/cookie.txt
