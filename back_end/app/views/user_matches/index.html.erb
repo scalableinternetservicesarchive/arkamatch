@@ -1,9 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Similar people</h1>
-<%= paginate @paginable %>
+<%  unless @paginable.nil? %>
+  <%= paginate @paginable %>
 <%= link_to_prev_page @paginable, '< Previous' %>
 <%= link_to_next_page @paginable, 'Next >' %>
+<% else %>
+<% @paginable=@user_matches%>
+<% end %>
+
 
 <table style="border-collapse: separate; border-spacing: 20px; border:1">
   <thead>
@@ -13,7 +18,6 @@
   </thead>
   <tbody>
     <% @paginable.each do |user_match| %>
-      <%= user_match %>
       <tr onClick="document.location.href='/user_profiles?name=<%=user_match['match']%>';">
       <td><img style="width: 200px" src="https://miro.medium.com/fit/c/256/256/0*1KAKDGdC7Sf1VBbx."><td>
         <td style="text-align:left;vertical-align:top;padding:0 text-transform: capitalize;">
@@ -26,7 +30,6 @@
 
   </tbody>
 </table>
-
 
 
 <br>
