@@ -10,18 +10,26 @@ class UserMatchesController < ApplicationController
   # GET /user_matches
   # GET /user_matches.json
   def index
-    @user_matches=execute_sql("SELECT up2.name as match, count(*) as num_matches
-    FROM user_preferences up1
-    JOIN user_preferences up2
-    ON up1.name = '#{current_user.username}'
-    AND up2.name != '#{current_user.username}'
-    AND up1.interest=up2.interest
-    GROUP BY up1.name,up2.name
-    ORDER BY num_matches DESC").to_a
+    puts params
+    if params['cached_matches']=="true"
+      @user_matches = execute_sql("SELECT match, num_matches 
+        FROM match_reports 
+        WHERE username='#{current_user.username}' and match!='#{current_user.username}'
+        ORDER BY  num_matches DESC").to_a
+      else
+        @user_matches=execute_sql("
+          SELECT up1.name as name, up2.name as match, count(*) as num_matches
+          FROM user_preferences up1
+          JOIN user_preferences up2
+          ON up1.name = '#{current_user.username}'
+          AND up2.name != '#{current_user.username}'AND  up1.interest=up2.interest
+          GROUP BY up1.name,up2.name
+          ORDER BY num_matches DESC").to_a
+    end
 
-    @paginable = Kaminari.paginate_array(@user_matches).page(params[:page]).per(10)
-
-    # @user_matches = UserMatch.all
+    if params['paginate']=="true"
+    @paginable = Kaminari.paginate_array(@user_matches).page(params[:page]).per(2)
+    end
   end
 
   # GET /user_matches/1
@@ -86,6 +94,6 @@ class UserMatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_match_params
-      params.require(:user_match).permit(:user, :match, :num_matches)
+      params.require(:user_match).permit(:user, :match, :num_matches,:paginate,:cached_matches)
     end
 end
