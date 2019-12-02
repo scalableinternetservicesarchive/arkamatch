@@ -63,7 +63,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 gem 'bootstrap', '~> 4.3.1'
-gem 'jquery-rails'
 
 gem 'simple_form'
 
@@ -71,4 +70,10 @@ gem 'redis'
 
 gem 'will_paginate', '~> 3.1.0'
 gem 'kaminari'
+
 gem 'scenic'
+
+gem 'jquery-rails' 
+# gem 'turbolinks'
+gem 'jquery-turbolinks'
+

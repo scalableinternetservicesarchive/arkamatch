@@ -4,17 +4,16 @@
 
   <!-- Client side setup -->
   <clients>
-    <client host="localhost" use_controller_vm="true" maxusers="1000"/>
+    <client host="localhost" use_controller_vm="true" maxusers="10000"/>
   </clients>
 
   <!-- Server side setup -->
   <servers>
-    <server host="localhost" port="3000" type="tcp"></server>
+    <server host="SERVER_PLACEHOLDER" port="80" type="tcp"></server>
   </servers>
 
-
   <load>
-    <arrivalphase phase="1" duration="30" unit="second">
+    <arrivalphase phase="1" duration="5" unit="second">
     <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="2" duration="30" unit="second">
@@ -48,37 +47,65 @@
         <http url="/" version="1.1" method="GET"></http>
       </request>
 
-      <!-- the user took a look at our sign up page; very intrigued! -->
-      <request>
-        <http url="/users/sign_up" version="1.1" method="GET"></http>
-      </request>
-      <thinktime value="10" random="true"/>
-      <!-- they decided to sign up -->
+      <!-- START OF AUTHENTCATION STAGE -->
       <setdynvars sourcetype="file" fileid="test" delimiter="," order="random">
         <var name="user_email"/>
         <var name="user_user_name"/>
         <var name="user_password"/>
       </setdynvars>
-
-
-      <request subst="true">
-        <http url="/users" version="1.1" method="POST" content_type="application/x-www-form-urlencoded" contents="user%5Bemail%5D=%%_user_email%%%40abc.com&amp;user%5Busername%5D=%%_user_user_name%%&amp;user%5Bpassword%5D=%%_user_password%%&amp;user%5Bpassword_confirmation%5D=%%_user_password%%&amp;commit=Sign+up"></http>
-      </request>
-
+      <!-- go to the log in page -->
       <request>
-        <http url="/users/sign_out" version="1.1" method="DELETE" content_type="application/x-www-form-urlencoded"/>
-      </request>
-
-      <!-- then they go to the log in page -->
-      <request>
-        <http url="/users/sign_in" version="1.1" method="GET"></http>
+        <http url="/users/sign_in" version="1.1" method="GET"/>
       </request>
       <!-- add in a typing time because not everybody has a type speed of 200 WPM; I am jelly -->
-      <thinktime value="10" random="true"></thinktime>
+      <thinktime value="2" random="true"/>
       <!-- then they actually send in the log in request -->
       <request subst="true">
-        <http url="/users/sign_in" version="1.1" method="POST" content_type="application/x-www-form-urlencoded" contents="user%5Bemail%5D=%%_user_email%%%40abc.com&amp;user%5Bpassword%5D=%%_user_password%%"></http>
+        <http url="/users/sign_in" version="1.1" method="POST" content_type="application/x-www-form-urlencoded" contents="user%5Bemail%5D=%%_user_email%%%40bogus.com&amp;user%5Bpassword%5D=%%_user_password%%"/>
       </request>
+      <!-- END OF AUTHENTICATION STAGE -->
+
+      <!-- START OF MATCHING STAGE -->
+      <request>
+        <http url="/myprofile" version="1.1" method="GET"/>
+      </request>
+
+      <request>
+        <http url="/user_preferences/new" version="1.1" method="GET"/>
+      </request>
+
+      <request>
+        <http url="/user_preferences" version="1.1" method="POST" content_type="application/x-www-form-urlencoded" contents="user_preference%5Binterest%5D=Coding&amp;commit=Create+User+preference"/>
+      </request>
+
+      <request>
+        <http url="/user_matches" version="1.1" method="GET" />
+      </request>
+
+      <request>
+        <dyn_variable name="room_number" re="Room number is: (.*)&lt;/span>"></dyn_variable>
+        <http url="/" version="1.1" method="GET" />
+      </request>
+
+      <request subst="true">
+        <http url="/rooms/%%_room_number%%" version="1.1" method="GET"/>
+      </request>
+
+      <request subst="true">
+        <http url="/users/sign_in" version="1.1" method="POST" content_type="application/x-www-form-urlencoded" contents="user%5Bemail%5D=%%_room_number%%%40bogus.com&amp;user%5Bpassword%5D=%%_user_password%%"/>
+      </request>
+
+      <request subst="true">
+        <http url="/room_messages" version="1.1" method="POST" content_type="application/x-www-form-urlencoded" contents="room_message%5Bmessage%5D=%%_room_number%%&amp;room_message%5Broom_id%5D=%%_room_number%%&amp;commit=Send"/>
+      </request>
+      <!--END OF MATCHING STAGE -->
+
+
+      <!-- START OF CLEANUP STAGE -->
+      <!--<request>
+        <http url="/users" version="1.1" method="DELETE" content_type="application/x-www-form-urlencoded" />
+      </request>-->
+      <!-- END OF CLEANUP STAGE -->
 
     </session>
   </sessions>

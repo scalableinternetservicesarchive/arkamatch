@@ -16,9 +16,6 @@
       <li class="nav-item active">
         <a class="nav-link" href="/user_matches?paginate=true&cached_matches=false">Similar people<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
-      </li>
       </ul>
       </div>
     <div class="dropdown">
@@ -28,7 +25,7 @@
       </a>
 
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-        <%# <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %> %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
       </div>
     </div>
   <% end %>

@@ -10,6 +10,7 @@ class UserPreferencesController < ApplicationController
   # GET /user_preferences/1
   # GET /user_preferences/1.json
   def execute_sql(sql)
+    
     results = ActiveRecord::Base.connection.execute(sql)
     results.each do |res|
       puts res
@@ -19,6 +20,8 @@ class UserPreferencesController < ApplicationController
 
   def show
     # execute_sql("create extension fuzzystrmatch")
+    execute_sql("create extension IF NOT EXISTS fuzzystrmatch;")
+    execute_sql("create extension IF NOT EXISTS pg_trgm;")
     @similar_preferences=execute_sql("SELECT interest,count(*) as number_of_people_interested
                               FROM user_preferences
                               WHERE soundex(interest) = soundex('#{@user_preference.interest}')
