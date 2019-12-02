@@ -12,7 +12,6 @@ require 'csv'
 csv_text = File.read(Rails.root.join('lib','seeds', 'users.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do | row |
-  puts row.to_hash
   user = User.create! :username => row['username'],
                      :email => row['email_prefix']+"@bogus.com",
                       :password =>  row['password'],
@@ -21,7 +20,6 @@ csv.each do | row |
   if row['username'] != "system_admin"
     random_interests = interests.sample(number_of_interests.sample(1)[0])
     random_interests.each do |interest|
-      puts interest
       preference = UserPreference.create! :name => row['username'], :interest => interest
     end
   end
