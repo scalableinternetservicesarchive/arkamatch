@@ -18,3 +18,8 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+
+set :output, "log/whenever.log"
+every 1.minute do
+    rake "my_namespace:fetch"
+end
