@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :update_views
   resources :user_profiles
   # resources :myprofiles
   resources :group_version_numbers
