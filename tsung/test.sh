@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
-TEST_CSV=test.csv
+TEST_CSV=test_sample.csv
 TEST_SCRIPT=simple.xml
 WORKING_DIR=$(pwd)/$TEST_CSV
 SERVER_LOC=$1

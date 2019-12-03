@@ -9,7 +9,7 @@
 interests=['Basketball','Video games','Baseball','Tennis','Surfing','Skateboarding', 'Programming']
 number_of_interests = [2,3,4]
 require 'csv'
-csv_text = File.read(Rails.root.join('lib','seeds', 'users.csv'))
+csv_text = File.read(Rails.root.join('lib','seeds', 'users_sample.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do | row |
   user = User.create! :username => row['username'],
