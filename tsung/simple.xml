@@ -137,7 +137,7 @@
 
       <!-- START OF CLEANUP STAGE -->
       <request>
-        <http url="/users" version="1.1" method="GET" content_type="application/x-www-form-urlencoded" />
+        <http url="/users/sign_out" version="1.1" method="DELETE" content_type="application/x-www-form-urlencoded" />
       </request>
       <!-- END OF CLEANUP STAGE -->
 
