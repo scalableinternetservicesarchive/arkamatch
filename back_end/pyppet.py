@@ -28,4 +28,4 @@ if __name__ == '__main__':
     while True:
         job()
         # print('runs')
-        time.sleep(60)
+        time.sleep(10)
