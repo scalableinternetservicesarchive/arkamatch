@@ -81,6 +81,8 @@
         <http url="/user_preferences" version="1.1" method="POST" content_type="application/x-www-form-urlencoded" contents="user_preference%5Binterest%5D=Coding&amp;commit=Create+User+preference"/>
       </request>
 
+      <thinktime min="10" max="11" random="true"></thinktime>
+
       <request>
         <http url="/user_matchesQUERY_PARAMETERS" version="1.1" method="GET" />
       </request>
