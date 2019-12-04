@@ -95,19 +95,50 @@
       </request>
 
       <request subst="true">
-        <http url="/users/sign_in" version="1.1" method="POST" content_type="application/x-www-form-urlencoded" contents="user%5Bemail%5D=%%_room_number%%%40bogus.com&amp;user%5Bpassword%5D=%%_user_password%%"/>
-      </request>
-
-      <request subst="true">
         <http url="/room_messages" version="1.1" method="POST" content_type="application/x-www-form-urlencoded" contents="room_message%5Bmessage%5D=%%_room_number%%&amp;room_message%5Broom_id%5D=%%_room_number%%&amp;commit=Send"/>
       </request>
       <!--END OF MATCHING STAGE -->
 
+      <!-- START OF REPEATED ACCESS STAGE -->
+      <request>
+        <http url="/user_matchesQUERY_PARAMETERS" version="1.1" method="GET" />
+      </request>
+
+      <request>
+        <http url="/myprofile" version="1.1" method="GET"/>
+      </request>
+
+      <!-- 3 Repeated accesses to similar user page -->
+      <request>
+        <http url="/user_matchesQUERY_PARAMETERS" version="1.1" method="GET" />
+      </request>
+
+      <request>
+        <http url="/user_matchesQUERY_PARAMETERS" version="1.1" method="GET" />
+      </request>
+
+      <request>
+        <http url="/user_matchesQUERY_PARAMETERS" version="1.1" method="GET" />
+      </request>
+
+      <!-- 3 Repeated accesses to my profile page -->
+      <request>
+        <http url="/myprofile" version="1.1" method="GET"/>
+      </request>
+
+      <request>
+        <http url="/myprofile" version="1.1" method="GET"/>
+      </request>
+
+      <request>
+        <http url="/myprofile" version="1.1" method="GET"/>
+      </request>
+      <!-- END OF REPEATED ACCESS STAGE -->
 
       <!-- START OF CLEANUP STAGE -->
-      <!--<request>
-        <http url="/users" version="1.1" method="DELETE" content_type="application/x-www-form-urlencoded" />
-      </request>-->
+      <request>
+        <http url="/users" version="1.1" method="GET" content_type="application/x-www-form-urlencoded" />
+      </request>
       <!-- END OF CLEANUP STAGE -->
 
     </session>
