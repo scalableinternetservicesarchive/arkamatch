@@ -70,7 +70,7 @@ gem 'redis'
 
 gem 'will_paginate', '~> 3.1.0'
 gem 'kaminari'
-gem 'hirb'
+
 gem 'scenic'
 
 gem 'jquery-rails' 
