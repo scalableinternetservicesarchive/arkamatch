@@ -1,0 +1,2 @@
+class UpdateView < ApplicationRecord
+end
