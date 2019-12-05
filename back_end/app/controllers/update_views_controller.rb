@@ -14,8 +14,8 @@ class UpdateViewsController < ApplicationController
 
   # GET /update_views/new
   def new
-    @update_view = UpdateView.new
     MatchReports.refresh
+    @update_view = UpdateView.new
 
   end
 

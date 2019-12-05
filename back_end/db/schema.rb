@@ -97,5 +97,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_022951) do
        JOIN user_preferences up2 ON (((up1.interest)::text = (up2.interest)::text)))
     GROUP BY up1.name, up2.name
     ORDER BY (count(*)) DESC;
+    CREATE UNIQUE INDEX userID
+    ON match_reports (username);
   SQL
 end
