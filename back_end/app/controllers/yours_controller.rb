@@ -26,7 +26,7 @@ class YoursController < ApplicationController
     FROM user_preferences up
     WHERE name= '#{current_user.username}'
     ORDER BY number_of_people_interested DESC").to_a
-    Rails.cache.write(memcahce_key, @preferences, expires_in: 1.minute)
+    Rails.cache.write(memcahce_key, @preferences, expires_in: 5.minute)
     else
       @preferences=Rails.cache.fetch(memcahce_key)
       @cached="te"

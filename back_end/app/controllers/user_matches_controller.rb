@@ -29,7 +29,7 @@ class UserMatchesController < ApplicationController
           GROUP BY up1.name,up2.name
           ORDER BY num_matches DESC").to_a
     end
-        Rails.cache.write(memcahce_key, @user_matches, expires_in: 1.minute)
+        Rails.cache.write(memcahce_key, @user_matches, expires_in: 5.minute)
   else
     @user_matches=Rails.cache.fetch(memcahce_key)
     @cached="gvjk"
