@@ -46,6 +46,9 @@ class UserPreferencesController < ApplicationController
 
   # GET /user_preferences/new
   def new
+    memcahce_key= current_user.username+"_profile_cache"
+    # invalidate memcahce since a new interest was added.
+    Rails.cache.delete(memcahce_key)
     @user_preference = UserPreference.new
     @user_preference.name=current_user.username
   end
