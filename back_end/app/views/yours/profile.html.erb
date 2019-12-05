@@ -5,7 +5,11 @@
   <p style="float: left;"><img style="width: 300px" src=<%= @account.gravatar_url %>></img><p>
 
 </div>
+
 <div style="display:inline-block; margin: 20px">
+<% unless @cached.nil? %>
+<p>Memcached!</p>
+<% end %>
   <div> <span style="font-weight:lighter;">Username</span>&emsp;&emsp;&ensp;&ensp;<span>  <%= @account.username %></span> </div>
   <div> <span style="font-weight:lighter;">Email</span>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<span>  <%= @account.email %></span> </div>
   <div> <span style="font-weight:lighter;">Member since</span>&emsp;&ensp;<span>  <%= @account.created_at.to_date %></span> </div>
