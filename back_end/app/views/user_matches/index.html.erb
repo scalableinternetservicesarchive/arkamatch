@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Similar people</h1>
+<% unless @cached.nil? %>
+<p>Memcached!</p>
+<% end %>
+
 <%  unless @paginable.nil? %>
   <%= paginate @paginable %>
 <%= link_to_prev_page @paginable, '< Previous' %>

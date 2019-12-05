@@ -11,6 +11,9 @@ class UserMatchesController < ApplicationController
   # GET /user_matches.json
   def index
     puts params
+    memcahce_key= current_user.username+"_user_matches_cache"
+    if Rails.cache.fetch(memcahce_key).nil?
+
     if params['cached_matches']=="true"
       @user_matches = execute_sql("SELECT match, num_matches 
         FROM match_reports 
@@ -26,6 +29,11 @@ class UserMatchesController < ApplicationController
           GROUP BY up1.name,up2.name
           ORDER BY num_matches DESC").to_a
     end
+        Rails.cache.write(memcahce_key, @user_matches, expires_in: 1.minute)
+  else
+    @user_matches=Rails.cache.fetch(memcahce_key)
+    @cached="gvjk"
+  end
 
     if params['paginate']=="true"
     @paginable = Kaminari.paginate_array(@user_matches).page(params[:page]).per(2)
