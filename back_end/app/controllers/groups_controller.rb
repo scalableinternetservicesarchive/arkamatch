@@ -24,7 +24,7 @@ class GroupsController < ApplicationController
   end
 
   def k_group_size
-  2
+  6
   end
 
   def get_group_name(interest,version,group_num)

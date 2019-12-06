@@ -10,7 +10,7 @@
   <tbody>
   <% @similar_preferences.each do |user_preference| %>
     <tr>
-      <td><%= user_preference %></td>
+      <td><%= user_preference['interest'] %></td>
     </tr>
   <% end %>
   </tbody>
@@ -22,7 +22,7 @@
   <tbody>
   <% @preferences.each do |user_preference| %>
     <tr>
-      <td><%= user_preference %></td>
+      <td><%= user_preference['interest'] %></td>
     </tr>
   <% end %>
   </tbody>
@@ -33,7 +33,7 @@
   <tbody>
   <% @matches.each do |match| %>
     <tr>
-      <td><%= match %></td>
+      <td><%=match['num_matches']%> matches with <%= match['match']%></td>
     </tr>
   <% end %>
   </tbody>
