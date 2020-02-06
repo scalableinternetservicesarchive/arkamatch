@@ -1,10 +1,18 @@
 class UpdateViewsController < ApplicationController
   before_action :set_update_view, only: [:show, :edit, :update, :destroy]
+  
+  def execute_sql(sql)
+    results = ActiveRecord::Base.connection.execute(sql)
+    results.each do |res|
+      puts res
+    end
+    return results
+  end
 
   # GET /update_views
   # GET /update_views.json
   def index
-    @update_views = UpdateView.all
+    @put_indexes = execute_sql("CREATE INDEX IF NOT EXISTS userid ON match_reports (username)")
   end
 
   # GET /update_views/1
@@ -14,8 +22,8 @@ class UpdateViewsController < ApplicationController
 
   # GET /update_views/new
   def new
-    @update_view = UpdateView.new
     MatchReports.refresh
+    # @update_view = UpdateView.new
 
   end
 
